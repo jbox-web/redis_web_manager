@@ -81,17 +81,6 @@ $(document).ready(function () {
                 legend: {
                     position: 'bottom'
                 },
-                scales: {
-                    yAxes: [
-                        {
-                            ticks: {
-                                callback: function (value) {
-                                    return humanSize(value);
-                                }
-                            }
-                        }
-                    ]
-                },
                 tooltips: {
                     callbacks: {
                         label: function (props) {
@@ -149,17 +138,6 @@ $(document).ready(function () {
             options: {
                 legend: {
                     position: 'bottom'
-                },
-                scales: {
-                    yAxes: [
-                        {
-                            ticks: {
-                                callback: function (value) {
-                                    return humanSecond(parseInt(value, 10));
-                                }
-                            }
-                        }
-                    ]
                 },
                 tooltips: {
                     callbacks: {
