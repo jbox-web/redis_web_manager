@@ -34,8 +34,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.test_files = Dir['spec/**/*']
 
-  spec.add_development_dependency 'rspec-rails', '~> 5.0.0'
-  spec.add_development_dependency 'simplecov', '~> 0.16'
+  spec.add_development_dependency 'rspec-rails'
+  spec.add_development_dependency 'simplecov'
 
   spec.add_dependency 'pagy', '>= 5.0', '< 6'
   spec.add_dependency 'rails', '>= 5.2', '< 8'
