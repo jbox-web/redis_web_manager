@@ -1,24 +1,15 @@
-/.bundle/
-/.yardoc
-/_yardoc/
-/coverage/
-/doc/
-/pkg/
-/spec/reports/
-/tmp/
+# Ignore bundler config.
+.bundle/
 
-# rspec failure tracking
-.rspec_status
+# Ignore Gemfile.lock
+Gemfile.lock
+gemfiles/*.lock
 
-# IDE
-/.idea
-.idea/workspace.xml
-.rakeTasks
-.generators
+# Ignore test files
+coverage/
 
-# Gem
-*.gem
-
-# Logs
+# Ignore dummy app files
+spec/dummy/db/*.sqlite3
+spec/dummy/db/*.sqlite3-*
 spec/dummy/log/*.log
 spec/dummy/tmp/
