@@ -1,44 +1,27 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.push File.expand_path('lib', __dir__)
+require_relative 'lib/redis_web_manager/version'
 
-# Maintain your gem's version:
-require 'redis_web_manager/version'
+Gem::Specification.new do |s|
+  s.name        = 'redis_web_manager'
+  s.version     = RedisWebManager::VERSION
+  s.platform    = Gem::Platform::RUBY
+  s.authors     = ['Boris BRESCIANI', 'Benjamin DARCET', 'Olivier DUMAS']
+  s.email       = ['boris2bresciani@gmail.com', 'b.darcet@gmail.com', 'dumas.olivier@outlook.fr']
+  s.homepage    = 'https://github.com/OpenGems/redis_web_manager'
+  s.summary     = 'Manage your Redis instance (See keys, memory used, connected client, etc...)'
+  s.description = 'Manage your Redis instance (See keys, memory used, connected client, configuration, information)'
+  s.license     = 'MIT'
 
-# Describe your gem and declare its dependencies:
-Gem::Specification.new do |spec|
-  spec.name        = 'redis_web_manager'
-  spec.version     = RedisWebManager::VERSION
+  s.required_ruby_version = '>= 3.0.0'
 
-  spec.authors     = ['Boris BRESCIANI', 'Benjamin DARCET', 'Olivier DUMAS']
-  spec.email       = %w[boris2bresciani@gmail.com
-                        b.darcet@gmail.com
-                        dumas.olivier@outlook.fr]
+  s.files = `git ls-files`.split("\n")
 
-  spec.summary     = 'Manage your Redis instance (See keys, memory used, connected client, etc...)'
-  spec.description = 'Manage your Redis instance (See keys, memory used, connected client, configuration, information)'
-  spec.homepage    = 'https://github.com/OpenGems/redis_web_manager'
-  spec.license     = 'MIT'
+  s.add_runtime_dependency 'pagy', '>= 5.0', '< 6'
+  s.add_runtime_dependency 'rails', '>= 5.2', '< 8'
+  s.add_runtime_dependency 'redis', '>= 4.1.0', '< 6'
+  s.add_runtime_dependency 'sprockets-rails', '~> 3.4.2'
 
-  spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = spec.homepage
-
-  # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files = Dir.chdir(File.expand_path(__dir__)) do
-    `git ls-files -z`.split("\x0")
-                     .reject { |f| f.match(%r{^(test|spec|features|images)/}) }
-  end
-  spec.bindir        = 'exe'
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ['lib']
-  spec.test_files = Dir['spec/**/*']
-
-  spec.add_development_dependency 'rspec-rails'
-  spec.add_development_dependency 'simplecov'
-
-  spec.add_dependency 'pagy', '>= 5.0', '< 6'
-  spec.add_dependency 'rails', '>= 5.2', '< 8'
-  spec.add_dependency 'redis', '>= 4.1.0', '< 6'
-  spec.add_dependency 'sprockets-rails', '~> 3.4.2'
+  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'simplecov'
 end
