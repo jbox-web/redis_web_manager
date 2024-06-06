@@ -44,10 +44,10 @@ module RedisWebManager
 
     def zrange(key, start, stop, options = {})
       if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.0.0')
-        return redis.zrange(key, start, stop, **options)
+        redis.zrange(key, start, stop, **options)
+      else
+        redis.zrange(key, start, stop, options)
       end
-
-      redis.zrange(key, start, stop, options)
     end
 
     def hgetall(key)

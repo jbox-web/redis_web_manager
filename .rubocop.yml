@@ -1,17 +1,36 @@
-Documentation:
+---
+require:
+  - rubocop-rake
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0
+  Exclude:
+    - bin/*
+    - gemfiles/*
+    - spec/**/*
+
+Style/Documentation:
   Enabled: false
-Metrics/LineLength:
-  IgnoredPatterns: ['(\A|\s)#']
-  Max: 100
-Layout/EmptyLineAfterGuardClause:
+
+Gemspec/DevelopmentDependencies:
   Enabled: false
-Layout/EmptyLinesAroundBlockBody:
+
+Gemspec/RequireMFA:
   Enabled: false
-Style/DoubleNegation:
-  Enabled: false
+
 Metrics/MethodLength:
   Max: 20
+
 Metrics/BlockLength:
   Max: 30
+
+Metrics/ClassLength:
+  Max: 120
+
 Metrics/AbcSize:
   Max: 20
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
