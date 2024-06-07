@@ -1,11 +1,10 @@
 # RedisWebManager
 
-[![Gem Version](https://badge.fury.io/rb/redis_web_manager.svg)](https://badge.fury.io/rb/redis_web_manager)
-[![Maintainability](https://api.codeclimate.com/v1/badges/55600fe789679fe62d8b/maintainability)](https://codeclimate.com/github/OpenGems/redis_web_manager/maintainability)
-[![Build Status](https://travis-ci.org/OpenGems/redis_web_manager.svg?branch=master)](https://travis-ci.org/OpenGems/redis_web_manager)
-[![security](https://hakiri.io/github/OpenGems/redis_web_manager/master.svg)](https://hakiri.io/github/OpenGems/redis_web_manager/master)
-![Gem](https://img.shields.io/gem/dt/redis_web_manager)
-[![Coverage Status](https://coveralls.io/repos/github/OpenGems/redis_web_manager/badge.svg?branch=master)](https://coveralls.io/github/OpenGems/redis_web_manager?branch=master)
+[![GitHub license](https://img.shields.io/github/license/jbox-web/redis_web_manager.svg)](https://github.com/jbox-web/redis_web_manager/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/jbox-web/redis_web_manager.svg)](https://github.com/jbox-web/redis_web_manager/releases/latest)
+[![CI](https://github.com/jbox-web/redis_web_manager/workflows/CI/badge.svg)](https://github.com/jbox-web/redis_web_manager/actions)
+[![Code Climate](https://codeclimate.com/github/jbox-web/redis_web_manager/badges/gpa.svg)](https://codeclimate.com/github/jbox-web/redis_web_manager)
+[![Test Coverage](https://codeclimate.com/github/jbox-web/redis_web_manager/badges/coverage.svg)](https://codeclimate.com/github/jbox-web/redis_web_manager/coverage)
 
 Web interface that allows you to manage easily your Redis instance (see keys, memory used, connected client, etc...). 
 
