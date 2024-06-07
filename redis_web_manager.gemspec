@@ -31,4 +31,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop-rspec'
   s.add_development_dependency 'ruby-lsp'
   s.add_development_dependency 'simplecov'
+
+  if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.4.0")
+    s.add_development_dependency "base64"
+    s.add_development_dependency "bigdecimal"
+    s.add_development_dependency "mutex_m"
+    s.add_development_dependency "drb"
+  end
 end
