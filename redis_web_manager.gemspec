@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'sprockets-rails', '~> 3.4.2'
   s.add_runtime_dependency 'zeitwerk'
 
+  s.add_development_dependency 'appraisal'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'rubocop'
   s.add_development_dependency 'rubocop-rake'
