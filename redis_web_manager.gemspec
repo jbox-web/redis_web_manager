@@ -17,10 +17,10 @@ Gem::Specification.new do |s|
 
   s.files = `git ls-files`.split("\n")
 
-  s.add_runtime_dependency 'pagy', '>= 5.0', '< 6'
-  s.add_runtime_dependency 'rails', '>= 5.2', '< 8'
-  s.add_runtime_dependency 'redis', '>= 4.1.0', '< 6'
-  s.add_runtime_dependency 'sprockets-rails', '~> 3.4.2'
+  s.add_runtime_dependency 'pagy', '>= 5.0'
+  s.add_runtime_dependency 'rails', '>= 6.1'
+  s.add_runtime_dependency 'redis', '>= 4.1.0'
+  s.add_runtime_dependency 'sprockets-rails', '>= 3.4.0'
 
   s.add_development_dependency 'appraisal'
   s.add_development_dependency 'debug'
