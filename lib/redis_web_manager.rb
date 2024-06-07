@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
+require 'redis_web_manager/engine'
+require 'redis_web_manager/base'
+require 'redis_web_manager/action'
+require 'redis_web_manager/connection'
+require 'redis_web_manager/info'
+require 'redis_web_manager/data'
 require 'active_support/time'
 require 'redis'
 
-require 'zeitwerk'
-loader = Zeitwerk::Loader.for_gem
-loader.setup
-
 module RedisWebManager
-  require 'redis_web_manager/engine' if defined?(Rails)
-
   mattr_accessor :redises, default: { default: Redis.new }
   mattr_accessor :lifespan, default: 15.days
   mattr_accessor :authenticate, default: nil
