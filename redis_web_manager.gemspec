@@ -4,7 +4,7 @@ require_relative 'lib/redis_web_manager/version'
 
 Gem::Specification.new do |s|
   s.name        = 'redis_web_manager'
-  s.version     = RedisWebManager::VERSION
+  s.version     = RedisWebManager::VERSION::STRING
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Boris BRESCIANI', 'Benjamin DARCET', 'Olivier DUMAS']
   s.email       = ['boris2bresciani@gmail.com', 'b.darcet@gmail.com', 'dumas.olivier@outlook.fr']
