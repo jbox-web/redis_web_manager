@@ -17,24 +17,8 @@ Gem::Specification.new do |s|
 
   s.files = `git ls-files`.split("\n")
 
-  s.add_runtime_dependency 'pagy', '>= 5.0'
-  s.add_runtime_dependency 'rails', '>= 6.1'
-  s.add_runtime_dependency 'redis', '>= 4.1.0'
-  s.add_runtime_dependency 'sprockets-rails', '>= 3.4.0'
-
-  s.add_development_dependency 'appraisal'
-  s.add_development_dependency 'debug'
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'rubocop'
-  s.add_development_dependency 'rubocop-rake'
-  s.add_development_dependency 'rubocop-rspec'
-  s.add_development_dependency 'ruby-lsp'
-  s.add_development_dependency 'simplecov'
-
-  if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.4.0")
-    s.add_development_dependency "base64"
-    s.add_development_dependency "bigdecimal"
-    s.add_development_dependency "mutex_m"
-    s.add_development_dependency "drb"
-  end
+  s.add_dependency 'pagy', '>= 5.0'
+  s.add_dependency 'rails', '>= 6.1'
+  s.add_dependency 'redis', '>= 4.1.0'
+  s.add_dependency 'sprockets-rails', '>= 3.4.0'
 end
