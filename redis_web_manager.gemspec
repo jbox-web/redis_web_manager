@@ -13,12 +13,12 @@ Gem::Specification.new do |s|
   s.description = 'Manage your Redis instance (See keys, memory used, connected client, configuration, information)'
   s.license     = 'MIT'
 
-  s.required_ruby_version = '>= 3.0.0'
+  s.required_ruby_version = '>= 3.1.0'
 
   s.files = `git ls-files`.split("\n")
 
   s.add_dependency 'pagy', '>= 5.0'
-  s.add_dependency 'rails', '>= 6.1'
+  s.add_dependency 'rails', '>= 7.0'
   s.add_dependency 'redis', '>= 4.1.0'
   s.add_dependency 'sprockets-rails', '>= 3.4.0'
 end
