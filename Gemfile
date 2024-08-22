@@ -9,6 +9,7 @@ gem "appraisal", git: "https://github.com/n-rodriguez/appraisal.git", branch: "w
 gem "debug"
 gem "rspec-rails"
 gem "rubocop"
+gem "rubocop-performance"
 gem "rubocop-rake"
 gem "rubocop-rspec"
 gem "ruby-lsp"
