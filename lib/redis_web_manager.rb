@@ -23,7 +23,7 @@ module RedisWebManager
     private
 
     # rubocop:disable Style/IfUnlessModifier
-    def check_attrs
+    def check_attrs # rubocop:disable Metrics/MethodLength
       unless redises.is_a?(::Hash)
         raise(ArgumentError, 'Invalid redises hash, use like that { test: Redis.new }')
       end

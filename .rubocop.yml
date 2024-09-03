@@ -3,6 +3,7 @@ require:
   - rubocop-performance
   - rubocop-rake
   - rubocop-rspec
+  - rubocop-rspec_rails
 
 AllCops:
   NewCops: enable
@@ -12,26 +13,37 @@ AllCops:
     - gemfiles/*
     - spec/**/*
 
-Style/Documentation:
-  Enabled: false
-
-Gemspec/DevelopmentDependencies:
-  Enabled: false
-
 Gemspec/RequireMFA:
   Enabled: false
 
-Metrics/MethodLength:
-  Max: 20
+#########
+# STYLE #
+#########
 
-Metrics/BlockLength:
-  Max: 30
+Style/Documentation:
+  Enabled: false
 
-Metrics/ClassLength:
-  Max: 120
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
 
-Metrics/AbcSize:
-  Max: 20
+##########
+# LAYOUT #
+##########
+
+Layout/LineLength:
+  Max: 125
+
+Layout/EmptyLines:
+  Enabled: false
+
+Layout/EmptyLineBetweenDefs:
+  Enabled: false
 
 Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
   Enabled: false

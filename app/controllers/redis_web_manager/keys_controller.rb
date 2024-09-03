@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RedisWebManager
-  class KeysController < ApplicationController
+  class KeysController < ApplicationController # rubocop:disable Metrics/ClassLength
 
     # GET /keys
     def index
@@ -83,7 +83,7 @@ module RedisWebManager
     end
 
     def get_hash(key)
-      value = Hash[info.hgetall(key).map do |k, v|
+      value = Hash[info.hgetall(key).map do |k, v| # rubocop:disable Style/HashConversion
         type, value = item_type(v)
         [k, { type: type, value: value }]
       end]
@@ -91,7 +91,7 @@ module RedisWebManager
       { value: value }
     end
 
-    def get_value(key)
+    def get_value(key) # rubocop:disable Metrics/MethodLength
       case info.type(key)
       when 'string'
         { value: info.get(key) }
@@ -118,7 +118,7 @@ module RedisWebManager
       }
     end
 
-    def keys
+    def keys # rubocop:disable Metrics/AbcSize
       keys = info.search(params[:query].presence).map { |key| format_key(key) }
       keys = filter_by_type(keys, params[:type].presence)
       keys = filter_by_expiry(keys, params[:expiry].presence)

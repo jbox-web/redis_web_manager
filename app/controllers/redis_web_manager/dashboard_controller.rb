@@ -3,7 +3,7 @@
 module RedisWebManager
   class DashboardController < ApplicationController
     # GET /dashboard
-    def index
+    def index # rubocop:disable Metrics/AbcSize
       @information = stats.map { |k, v| { name: k.to_s.humanize, value: v } }
       @status = info.status
       @url = connection.id

@@ -2,10 +2,10 @@
 
 module RedisWebManager
   module DashboardHelper
-    def graph_canvas(data, id)
+    def graph_canvas(data, id) # rubocop:disable Metrics/MethodLength
       if data.nil? || data.empty?
         content_tag(:div,
-                    'You don\'t have any RedisWebManager keys yet into your redis database',
+                    "You don't have any RedisWebManager keys yet into your redis database",
                     class: 'm-5 text-center')
       else
         content_tag(:canvas,

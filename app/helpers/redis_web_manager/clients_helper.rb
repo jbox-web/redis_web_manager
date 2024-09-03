@@ -6,7 +6,7 @@ module RedisWebManager
       time_ago_in_words(Time.now - value.seconds).humanize
     end
 
-    def flags(value)
+    def flags(value) # rubocop:disable Metrics/MethodLength
       {
         A: 'Connection to be closed ASAP',
         b: 'The client is waiting in a blocking operation',
