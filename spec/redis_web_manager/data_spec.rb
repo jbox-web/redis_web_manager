@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe RedisWebManager::Data do
   let(:data) do
-    RedisWebManager::Data.new(RedisWebManager.redises.keys[0])
+    described_class.new(RedisWebManager.redises.keys[0])
   end
 
   describe 'data' do
@@ -13,11 +13,11 @@ RSpec.describe RedisWebManager::Data do
     end
 
     it 'returns a Array of keys' do
-      expect(data.keys).to be_a_kind_of(Array)
+      expect(data.keys).to be_a(Array)
     end
 
     it 'returns a Array of keys deleted' do
-      expect(data.flush).to be_a_kind_of(Array)
+      expect(data.flush).to be_a(Array)
     end
   end
 end

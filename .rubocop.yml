@@ -11,7 +11,7 @@ AllCops:
   Exclude:
     - bin/*
     - gemfiles/*
-    - spec/**/*
+    - spec/dummy/**/*
 
 Gemspec/RequireMFA:
   Enabled: false
@@ -46,4 +46,17 @@ Layout/EmptyLinesAroundBlockBody:
   Enabled: false
 
 Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+#########
+# RSPEC #
+#########
+
+RSpec/ExampleLength:
+  Max: 23
+
+RSpec/MultipleExpectations:
+  Max: 6
+
+RSpecRails/InferredSpecType:
   Enabled: false

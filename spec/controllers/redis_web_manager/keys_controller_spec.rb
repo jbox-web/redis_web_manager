@@ -67,7 +67,7 @@ RSpec.describe RedisWebManager::KeysController, type: :controller do
       eql = {
         value: 'test'
       }
-      expect(controller.send(:get_value, 'test')).to eql(eql)
+      expect(controller.send(:get_value, 'test')).to eq(eql)
     end
 
     it 'returns a hash value (get_value - hgetall)' do
@@ -80,7 +80,7 @@ RSpec.describe RedisWebManager::KeysController, type: :controller do
         }
       }
       redis.hset('hgetall', 'name', 'hgetall')
-      expect(controller.send(:get_value, 'hgetall')).to eql(eql)
+      expect(controller.send(:get_value, 'hgetall')).to eq(eql)
     end
 
     it 'returns a hash value (get_value - lrange)' do
@@ -101,7 +101,7 @@ RSpec.describe RedisWebManager::KeysController, type: :controller do
           }
         ]
       }
-      expect(controller.send(:get_value, 'lrange')).to eql(eql)
+      expect(controller.send(:get_value, 'lrange')).to eq(eql)
     end
 
     it 'returns a hash value (get_value - set)' do
@@ -109,7 +109,7 @@ RSpec.describe RedisWebManager::KeysController, type: :controller do
       eql = {
         values: [{ type: 'string', value: 'smembers' }]
       }
-      expect(controller.send(:get_value, 'smembers')).to eql(eql)
+      expect(controller.send(:get_value, 'smembers')).to eq(eql)
     end
 
     it 'returns a hash value (get_value - zset)' do
@@ -135,7 +135,7 @@ RSpec.describe RedisWebManager::KeysController, type: :controller do
           }
         ]
       }
-      expect(controller.send(:get_value, 'zrange')).to eql(eql)
+      expect(controller.send(:get_value, 'zrange')).to eq(eql)
     end
 
     it 'returns a hash value (get_value - not found)' do
@@ -145,7 +145,7 @@ RSpec.describe RedisWebManager::KeysController, type: :controller do
       eql = {
         value: 'Not found'
       }
-      expect(controller.send(:get_value, 'testtesttesttesttest')).to eql(eql)
+      expect(controller.send(:get_value, 'testtesttesttesttest')).to eq(eql)
     end
   end
 end

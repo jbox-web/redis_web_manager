@@ -8,7 +8,7 @@ RSpec.describe RedisWebManager::ApplicationHelper, type: :helper do
       expect(helper.status(true)).to match(/ON/)
     end
 
-    it 'returns status tag (true)' do
+    it 'returns status tag (false)' do
       expect(helper.status(false)).to match(/OFF/)
     end
 

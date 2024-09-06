@@ -5,22 +5,22 @@ require 'spec_helper'
 RSpec.describe RedisWebManager do
   describe 'Test default configuration' do
     it 'returns a Redis class' do
-      expect(RedisWebManager.redises).to be_a_kind_of(Hash)
+      expect(described_class.redises).to be_a(Hash)
     end
 
     it 'returns a nil class' do
-      expect(RedisWebManager.authenticate).to eql(nil)
+      expect(described_class.authenticate).to be_nil
     end
 
     it 'returns a ActiveSupport::Duration class' do
-      expect(RedisWebManager.lifespan).to be_a_kind_of(ActiveSupport::Duration)
+      expect(described_class.lifespan).to be_a(ActiveSupport::Duration)
     end
   end
 
   describe 'Test configuration' do
     it 'returns a raise error (redises)' do
       expect do
-        RedisWebManager.configure do |c|
+        described_class.configure do |c|
           c.redises = 1
         end
       end.to raise_error(ArgumentError, 'Invalid redises hash, use like that { test: Redis.new }')
@@ -28,7 +28,7 @@ RSpec.describe RedisWebManager do
 
     it 'returns a raise error (value of redises)' do
       expect do
-        RedisWebManager.configure do |c|
+        described_class.configure do |c|
           c.redises = {
             default: 1
           }
@@ -36,9 +36,9 @@ RSpec.describe RedisWebManager do
       end.to raise_error(ArgumentError, 'Invalid Redis instance for default, use like that Redis.new')
     end
 
-    it 'returns a raise error (lifespan)' do
+    it 'returns a raise error (invalid lifespan 1)' do
       expect do
-        RedisWebManager.configure do |c|
+        described_class.configure do |c|
           c.redises = {
             default: Redis.new
           }
@@ -47,9 +47,9 @@ RSpec.describe RedisWebManager do
       end.to raise_error(ArgumentError, 'Invalid lifespan, use like that 15.days, 15.minutes etc')
     end
 
-    it 'returns a raise error (lifespan)' do
+    it 'returns a raise error (invalid lifespan 2)' do
       expect do
-        RedisWebManager.configure do |c|
+        described_class.configure do |c|
           c.redises = {
             default: Redis.new
           }
@@ -59,7 +59,7 @@ RSpec.describe RedisWebManager do
     end
 
     it 'returns instances' do
-      RedisWebManager.configure do |c|
+      described_class.configure do |c|
         c.redises = {
           foo: Redis.new,
           bar: Redis.new
@@ -67,8 +67,8 @@ RSpec.describe RedisWebManager do
         c.lifespan = 12.days
       end
 
-      expect(RedisWebManager.redises.keys).to eql(%i[foo bar])
-      expect(RedisWebManager.redises.values.map(&:class)).to eql([Redis, Redis])
+      expect(described_class.redises.keys).to eql(%i[foo bar])
+      expect(described_class.redises.values.map(&:class)).to eql([Redis, Redis])
     end
   end
 end

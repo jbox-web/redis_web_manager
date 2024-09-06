@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe RedisWebManager::Action do
   let(:action) do
-    RedisWebManager::Action.new(RedisWebManager.redises.keys[0])
+    described_class.new(RedisWebManager.redises.keys[0])
   end
 
   let(:redis) do
@@ -13,21 +13,21 @@ RSpec.describe RedisWebManager::Action do
 
   describe 'action' do
     it 'returns a OK (flushall)' do
-      expect(action.flushall).to eql('OK')
+      expect(action.flushall).to eq('OK')
     end
 
     it 'returns a OK (flushdb)' do
-      expect(action.flushdb).to eql('OK')
+      expect(action.flushdb).to eq('OK')
     end
 
     it 'returns a 1 (del)' do
       redis.set('test', 'test')
-      expect(action.del('test')).to eql(1)
+      expect(action.del('test')).to eq(1)
     end
 
     it 'returns a OK (rename)' do
       redis.set('test', 'test')
-      expect(action.rename('test', 'test2')).to eql('OK')
+      expect(action.rename('test', 'test2')).to eq('OK')
     end
   end
 end

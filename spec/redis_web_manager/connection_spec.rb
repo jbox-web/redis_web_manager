@@ -4,28 +4,28 @@ require 'spec_helper'
 
 RSpec.describe RedisWebManager::Connection do
   let(:connection) do
-    RedisWebManager::Connection.new(RedisWebManager.redises.keys[0])
+    described_class.new(RedisWebManager.redises.keys[0])
   end
 
   describe 'connection' do
     it 'returns a host' do
-      expect(connection.host).to eql('localhost')
+      expect(connection.host).to eq('localhost')
     end
 
     it 'returns a port' do
-      expect(connection.port).to eql(6379)
+      expect(connection.port).to eq(6379)
     end
 
     it 'returns a db' do
-      expect(connection.db).to eql(0)
+      expect(connection.db).to eq(0)
     end
 
     it 'returns an id' do
-      expect(connection.id).to eql('redis://localhost:6379')
+      expect(connection.id).to eq('redis://localhost:6379')
     end
 
     it 'returns a location' do
-      expect(connection.location).to eql('localhost:6379')
+      expect(connection.location).to eq('localhost:6379')
     end
   end
 end
