@@ -17,16 +17,5 @@ module RedisWebManager
         end
       end
     end
-
-    config.generators do |generate|
-      # Don't generate assets
-      generate.assets false
-
-      # Don't generate helper
-      generate.helper false
-
-      # Rspec
-      generate.test_framework :rspec
-    end
   end
 end

@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
-require 'redis_web_manager/engine'
-require 'redis_web_manager/base'
-require 'redis_web_manager/action'
-require 'redis_web_manager/connection'
-require 'redis_web_manager/info'
-require 'redis_web_manager/data'
+# require external dependencies
 require 'active_support/time'
 require 'redis'
+
+# require internal dependencies
+require_relative 'redis_web_manager/engine'
+require_relative 'redis_web_manager/base'
+require_relative 'redis_web_manager/action'
+require_relative 'redis_web_manager/connection'
+require_relative 'redis_web_manager/info'
+require_relative 'redis_web_manager/data'
+
 
 module RedisWebManager
   mattr_accessor :redises, default: { default: Redis.new }
