@@ -15,7 +15,16 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 3.1.0'
 
-  s.files = `git ls-files`.split("\n")
+  s.files = Dir[
+    'README.md',
+    'LICENSE',
+    'lib/**/*.rb',
+    'config/**/*.rb',
+    'app/**/*.rb',
+    'app/**/*.erb',
+    'app/**/*.js',
+    'app/**/*.css'
+  ]
 
   s.add_dependency 'pagy', '>= 5.0'
   s.add_dependency 'rails', '>= 7.0'
