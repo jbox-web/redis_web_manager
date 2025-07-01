@@ -126,14 +126,14 @@ module RedisWebManager
     end
 
     def filter_by_type(keys, type)
-      return keys if invalid_option(type)
+      return keys if invalid_option?(type)
 
       keys.select { |key| key[:type] == type }
     end
 
     # rubocop:disable Layout/EmptyLineAfterGuardClause
     def filter_by_expiry(keys, expiry)
-      return keys if invalid_option(expiry)
+      return keys if invalid_option?(expiry)
       duration = expiry.to_i
       return keys.select { |key| key[:expiry] == -1 } if duration == -1
       keys.select { |key| key[:expiry] != -1 && key[:expiry] < duration }
@@ -141,12 +141,12 @@ module RedisWebManager
     # rubocop:enable Layout/EmptyLineAfterGuardClause
 
     def filter_by_memory(keys, memory)
-      return keys if invalid_option(memory)
+      return keys if invalid_option?(memory)
 
       keys.select { |key| key[:memory] < memory.to_i }
     end
 
-    def invalid_option(option)
+    def invalid_option?(option)
       option.nil? || option == 'all'
     end
 
