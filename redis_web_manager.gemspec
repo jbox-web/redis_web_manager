@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = 'Manage your Redis instance (See keys, memory used, connected client, configuration, information)'
   s.license     = 'MIT'
 
-  s.required_ruby_version = '>= 3.1.0'
+  s.required_ruby_version = '>= 3.2.0'
 
   s.files = Dir[
     'README.md',
