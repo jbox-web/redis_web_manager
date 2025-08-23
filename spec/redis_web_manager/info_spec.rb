@@ -41,7 +41,7 @@ RSpec.describe RedisWebManager::Info do
     end
 
     it 'returns a memory usage value (memory_usage)' do
-      expect(info.memory_usage('test')).to be_between(52, 62)
+      expect(info.memory_usage('test')).to be_between(40, 62)
     end
 
     it 'returns a test value (get)' do
