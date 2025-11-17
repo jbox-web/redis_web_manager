@@ -2,6 +2,7 @@
 
 # require external dependencies
 require 'active_support/time'
+require 'pagy'
 require 'redis'
 
 # require internal dependencies

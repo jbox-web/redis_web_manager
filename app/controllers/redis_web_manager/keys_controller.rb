@@ -7,7 +7,7 @@ module RedisWebManager
     def index
       @status = info.status
       @url = connection.id
-      @pagy, @keys = pagy_array(keys)
+      @pagy, @keys = pagy(:offset, keys)
     end
 
     # GET /key/:key
