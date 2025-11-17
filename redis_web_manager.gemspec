@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   ]
 
   s.add_dependency 'pagy', '>= 5.0'
-  s.add_dependency 'rails', '>= 7.0'
+  s.add_dependency 'rails', '>= 7.2'
   s.add_dependency 'redis', '>= 4.1.0'
   s.add_dependency 'sprockets-rails', '>= 3.4.0'
 end
