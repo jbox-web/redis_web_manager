@@ -3,19 +3,19 @@
 module RedisWebManager
   class Action < Base
     def flushall
-      redis.flushall
+      redis_flushall
     end
 
     def flushdb
-      redis.flushdb
+      redis_flushdb
     end
 
     def del(key)
-      redis.del(key)
+      redis_del(key)
     end
 
     def rename(old_name, new_name)
-      redis.rename(old_name, new_name)
+      redis_rename(old_name, new_name)
     end
   end
 end

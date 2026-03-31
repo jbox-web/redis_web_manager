@@ -34,7 +34,7 @@ module RedisWebManager
       end
 
       redises.each do |k, v|
-        unless v.is_a?(Redis)
+        unless v.is_a?(Redis) || v.is_a?(ConnectionPool)
           raise(ArgumentError, "Invalid Redis instance for #{k}, use like that Redis.new")
         end
       end

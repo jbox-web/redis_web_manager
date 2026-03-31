@@ -4,29 +4,30 @@ module RedisWebManager
   class Data < Base
     BASE = 'RedisWebManager'
 
+    def initialize(instance)
+      super
+      @data     = redis_scan_each(match: "#{BASE}_#{instance}_*")
+      @lifespan = RedisWebManager.lifespan
+      @stats    = redis_info.symbolize_keys
+    end
+
     def keys
-      data.map { |key| JSON.parse(redis.get(key), symbolize_names: true) }
+      data.map { |key| JSON.parse(redis_get(key), symbolize_names: true) }
     end
 
     def perform
       now = Time.now.to_i
       seconds = (now + lifespan.to_i) - now
-      redis.setex("#{BASE}_#{instance}_#{now}", seconds, serialize.to_json)
+      redis_setex("#{BASE}_#{instance}_#{now}", seconds, serialize.to_json)
     end
 
     def flush
-      data.map { |key| redis.del(key) }
+      data.map { |key| redis_del(key) }
     end
 
     private
 
-    def data
-      @data ||= redis.scan_each(match: "#{BASE}_#{instance}_*").to_a
-    end
-
-    def lifespan
-      @lifespan ||= RedisWebManager.lifespan
-    end
+    attr_reader :data, :lifespan, :stats
 
     def serialize
       {
@@ -62,10 +63,6 @@ module RedisWebManager
         used_cpu_sys_children: stats[:used_cpu_sys_children],
         used_cpu_user_children: stats[:used_cpu_user_children]
       }
-    end
-
-    def stats
-      @stats ||= redis.info.symbolize_keys
     end
   end
 end

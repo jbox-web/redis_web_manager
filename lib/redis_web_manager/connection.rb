@@ -2,30 +2,21 @@
 
 module RedisWebManager
   class Connection < Base
-    def host
-      @host ||= connection[:host]
-    end
+    attr_reader :host, :port, :db, :id, :location
 
-    def port
-      @port ||= connection[:port]
-    end
-
-    def db
-      @db ||= connection[:db]
-    end
-
-    def id
-      @id ||= connection[:id]
-    end
-
-    def location
-      @location ||= connection[:location]
+    def initialize(instance)
+      super
+      @host     = fetch_attribute(:host)
+      @port     = fetch_attribute(:port)
+      @db       = fetch_attribute(:db)
+      @id       = fetch_attribute(:id)
+      @location = fetch_attribute(:location)
     end
 
     private
 
-    def connection
-      @connection ||= redis.connection
+    def fetch_attribute(attribute)
+      redis_connection[attribute]
     end
   end
 end
