@@ -5,15 +5,15 @@ require 'spec_helper'
 RSpec.describe RedisWebManager::ApplicationHelper, type: :helper do
   describe 'helper' do
     it 'returns status tag (true)' do
-      expect(helper.status(true)).to match(/ON/)
+      expect(helper.status(true)).to include('ON')
     end
 
     it 'returns status tag (false)' do
-      expect(helper.status(false)).to match(/OFF/)
+      expect(helper.status(false)).to include('OFF')
     end
 
     it 'returns url tag' do
-      expect(helper.url('test.com')).to match(/kbd/)
+      expect(helper.url('test.com')).to include('kbd')
     end
 
     it 'returns a no expiration' do
