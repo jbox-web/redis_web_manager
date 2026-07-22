@@ -13,14 +13,16 @@ module RedisWebManager
     # GET /key/:key
     def show
       key = params[:key].presence
-      redirect_to keys_url if key.nil?
+      redirect_to(keys_url) and return if key.nil?
+
       @key = format_key(key)
     end
 
     # GET /key/:key
     def edit
       key = params[:key].presence
-      redirect_to keys_url if key.nil?
+      redirect_to(keys_url) and return if key.nil?
+
       @key = format_key(key)
     end
 
@@ -28,7 +30,8 @@ module RedisWebManager
     def update
       old_key = params[:old_name].presence
       new_name = params[:new_name].presence
-      redirect_to keys_url if old_key.nil? || new_name.nil?
+      redirect_to(keys_url) and return if old_key.nil? || new_name.nil?
+
       action.rename(old_key, new_name)
       redirect_to keys_url
     end
@@ -36,7 +39,8 @@ module RedisWebManager
     # DELETE /key/:key
     def destroy
       key = params[:key].presence
-      redirect_to keys_url if key.nil?
+      redirect_to(keys_url) and return if key.nil?
+
       action.del(key)
       redirect_to keys_url
     end
@@ -118,11 +122,23 @@ module RedisWebManager
       }
     end
 
+    # Lightweight variant for the index/list: everything the table and the
+    # type/expiry/memory filters need, WITHOUT reading each key's full value
+    # (get_value) — which is what makes a broad search hammer Redis and memory.
+    def format_key_summary(key)
+      {
+        key: key,
+        expiry: info.expiry(key),
+        type: info.type(key),
+        memory: info.memory_usage(key)
+      }
+    end
+
     def keys # rubocop:disable Metrics/AbcSize
-      keys = info.search(params[:query].presence).map { |key| format_key(key) }
+      keys = info.search(params[:query].presence).map { |key| format_key_summary(key) }
       keys = filter_by_type(keys, params[:type].presence)
       keys = filter_by_expiry(keys, params[:expiry].presence)
-      filter_by_memory(keys, params[:expiry].presence)
+      filter_by_memory(keys, params[:memory].presence)
     end
 
     def filter_by_type(keys, type)

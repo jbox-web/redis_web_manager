@@ -62,14 +62,14 @@ $(document).ready(function () {
                         fill: false
                     },
                     {
-                        label: 'Used memory overhead',
+                        label: 'Used memory startup',
                         data: used_memory_startup,
                         borderWidth: 2,
                         borderColor: '#e8c3b9',
                         fill: false
                     },
                     {
-                        label: 'Used memory overhead',
+                        label: 'Used memory dataset',
                         data: used_memory_dataset,
                         borderWidth: 2,
                         borderColor: '#8e5ea2',

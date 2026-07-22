@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Boris BRESCIANI', 'Benjamin DARCET', 'Olivier DUMAS']
   s.email       = ['boris2bresciani@gmail.com', 'b.darcet@gmail.com', 'dumas.olivier@outlook.fr']
-  s.homepage    = 'https://github.com/OpenGems/redis_web_manager'
+  s.homepage    = 'https://github.com/jbox-web/redis_web_manager'
   s.summary     = 'Manage your Redis instance (See keys, memory used, connected client, etc...)'
   s.description = 'Manage your Redis instance (See keys, memory used, connected client, configuration, information)'
   s.license     = 'MIT'

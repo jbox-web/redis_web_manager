@@ -19,5 +19,11 @@ RSpec.describe RedisWebManager::Data do
     it 'returns a Array of keys deleted' do
       expect(data.flush).to be_a(Array)
     end
+
+    it 'skips malformed snapshot values instead of raising' do
+      Redis.new.set("RedisWebManager_#{RedisWebManager.redises.keys[0]}_bad", 'not-json')
+      expect { data.keys }.not_to raise_error
+      expect(data.keys).to be_a(Array)
+    end
   end
 end

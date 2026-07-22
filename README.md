@@ -3,8 +3,6 @@
 [![GitHub license](https://img.shields.io/github/license/jbox-web/redis_web_manager.svg)](https://github.com/jbox-web/redis_web_manager/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/jbox-web/redis_web_manager.svg)](https://github.com/jbox-web/redis_web_manager/releases/latest)
 [![CI](https://github.com/jbox-web/redis_web_manager/workflows/CI/badge.svg)](https://github.com/jbox-web/redis_web_manager/actions)
-[![Code Climate](https://codeclimate.com/github/jbox-web/redis_web_manager/badges/gpa.svg)](https://codeclimate.com/github/jbox-web/redis_web_manager)
-[![Test Coverage](https://codeclimate.com/github/jbox-web/redis_web_manager/badges/coverage.svg)](https://codeclimate.com/github/jbox-web/redis_web_manager/coverage)
 
 Web interface that allows you to manage easily your Redis instance (see keys, memory used, connected client, etc...). 
 
@@ -22,6 +20,11 @@ You can easily edit and delete any keys stored in your redis database.
 Check how many clients are connected and their infos.
 
 ![RedisWebManager Clients](images/images_clients.png)
+
+## Requirements
+
+* Ruby >= 3.2
+* Rails >= 7.2
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -57,8 +60,9 @@ You can configure RedisWebManager:
 RedisWebManager.configure do |config|
   config.redises = {
     instance_1: Redis.new(db: 1),
-    instance_2: Redis.new(url: 'XXX')
-  } # Default { default: Redis.new } (Hash with instance(s) of Redis)
+    instance_2: Redis.new(url: 'XXX'),
+    instance_3: ConnectionPool.new { Redis.new(db: 3) }
+  } # Default { default: Redis.new } (Hash of Redis or ConnectionPool instances)
   config.lifespan = 2.days # Default 15.days (Lifespan of each keys for dashboard)
   config.authenticate = proc {
                            authenticate_or_request_with_http_basic do |username, password|
@@ -153,7 +157,7 @@ end
 
 
 ## Contributing
-Bug reports and pull requests are welcome on GitHub at https://github.com/OpenGems/redis_web_manager. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jbox-web/redis_web_manager.
 
 ## License
 

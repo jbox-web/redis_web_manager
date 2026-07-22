@@ -3,13 +3,14 @@
 module RedisWebManager
   class DashboardController < ApplicationController
     # GET /dashboard
-    def index # rubocop:disable Metrics/AbcSize
+    def index
       @information = stats.map { |k, v| { name: k.to_s.humanize, value: v } }
       @status = info.status
       @url = connection.id
-      @memory = keys_by_type(data.keys, :memory)
-      @cpu = keys_by_type(data.keys, :cpu)
-      @client = keys_by_type(data.keys, :client)
+      snapshots = data.keys
+      @memory = keys_by_type(snapshots, :memory)
+      @cpu = keys_by_type(snapshots, :cpu)
+      @client = keys_by_type(snapshots, :client)
     end
 
     private

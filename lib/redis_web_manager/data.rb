@@ -12,13 +12,20 @@ module RedisWebManager
     end
 
     def keys
-      data.map { |key| JSON.parse(redis_get(key), symbolize_names: true) }
+      data.filter_map do |key|
+        raw = redis_get(key)
+        next if raw.nil? # key expired/evicted between SCAN and GET
+
+        JSON.parse(raw, symbolize_names: true)
+      rescue JSON::ParserError
+        next # skip a corrupt snapshot instead of failing the whole dashboard
+      end
     end
 
     def perform
-      now = Time.now.to_i
-      seconds = (now + lifespan.to_i) - now
-      redis_setex("#{BASE}_#{instance}_#{now}", seconds, serialize.to_json)
+      now = Time.now
+      # nsec keeps the key unique when several snapshots land in the same second
+      redis_setex("#{BASE}_#{instance}_#{now.to_i}_#{now.nsec}", lifespan.to_i, serialize.to_json)
     end
 
     def flush

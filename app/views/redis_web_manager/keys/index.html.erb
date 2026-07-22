@@ -15,6 +15,9 @@
           <div class="collapse" id="search">
             <%= render partial: 'redis_web_manager/keys/search' %>
           </div>
+          <% if @keys.empty? %>
+            <p class="text-center text-muted p-4 mb-0">Use the search above to look up keys.</p>
+          <% else %>
           <div class="table-responsive">
             <table class="table mb-0">
               <thead>
@@ -42,6 +45,7 @@
               </tbody>
             </table>
           </div>
+          <% end %>
         </div>
       </div>
       <div class="d-flex align-items-center justify-content-center mt-3">

@@ -4,6 +4,20 @@ module RedisWebManager
   class Engine < ::Rails::Engine
     isolate_namespace RedisWebManager
 
+    # Loudly flag a production mount with no authentication: the tool exposes
+    # destructive Redis operations (flushall/flushdb, key delete) to anyone who
+    # can reach the mount path.
+    initializer 'redis_web_manager.authentication_warning' do |app|
+      app.config.after_initialize do
+        if defined?(Rails) && Rails.env.production? && RedisWebManager.authenticate.nil?
+          Rails.logger&.warn(
+            '[RedisWebManager] Mounted in production without `config.authenticate` — ' \
+            'destructive Redis actions are exposed unauthenticated.'
+          )
+        end
+      end
+    end
+
     initializer 'redis_web_manager.assets.precompile' do |app|
       # check if Rails api mode
       if app.config.respond_to?(:assets)

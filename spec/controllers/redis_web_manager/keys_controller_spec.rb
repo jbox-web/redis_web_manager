@@ -148,4 +148,59 @@ RSpec.describe RedisWebManager::KeysController, type: :controller do
       expect(controller.send(:get_value, 'testtesttesttesttest')).to eq(eql)
     end
   end
+
+  describe 'edit form contract' do
+    render_views
+
+    it 'submits the params #update actually reads (old_name/new_name)' do
+      redis.set('test', 'test')
+      get :edit, params: { key: 'test', instance: default.to_s }
+      expect(response.body).to include('name="old_name"')
+      expect(response.body).to include('name="new_name"')
+    end
+  end
+
+  describe 'missing key param guards' do
+    it 'redirects #show instead of raising DoubleRenderError' do
+      get :show, params: { instance: default.to_s }
+      expect(response).to be_redirect
+    end
+
+    it 'redirects #edit instead of raising DoubleRenderError' do
+      get :edit, params: { instance: default.to_s }
+      expect(response).to be_redirect
+    end
+
+    it 'redirects #destroy instead of raising DoubleRenderError' do
+      delete :destroy, params: { instance: default.to_s }
+      expect(response).to be_redirect
+    end
+
+    it 'redirects #update when names are missing (no rename, no double render)' do
+      put :update, params: { instance: default.to_s }
+      expect(response).to be_redirect
+    end
+  end
+
+  describe '#keys filtering' do
+    it 'filters by the memory param, not the expiry param' do
+      redis.set('memtest_small', 'x')
+      redis.set('memtest_big', 'x' * 200_000)
+      controller.params = ActionController::Parameters.new(
+        instance: default.to_s, query: 'memtest', memory: '1000'
+      )
+      names = controller.send(:keys).map { |key| key[:key] }
+      expect(names).to include('memtest_small')
+      expect(names).not_to include('memtest_big')
+    end
+  end
+
+  describe 'empty keys index' do
+    render_views
+
+    it 'shows a hint when there is nothing to display' do
+      get :index, params: { instance: default.to_s }
+      expect(response.body).to include('Use the search')
+    end
+  end
 end
