@@ -25,5 +25,15 @@ RSpec.describe RedisWebManager::Data do
       expect { data.keys }.not_to raise_error
       expect(data.keys).to be_a(Array)
     end
+
+    it 'skips snapshot keys that vanish between SCAN and GET' do
+      key = "RedisWebManager_#{RedisWebManager.redises.keys[0]}_gone"
+      Redis.new.set(key, 'irrelevant')
+      # `data` captures the key list at construction (SCAN); deleting the key now
+      # makes the later GET return nil, exercising the expired/evicted branch.
+      data
+      Redis.new.del(key)
+      expect(data.keys).to eq([])
+    end
   end
 end

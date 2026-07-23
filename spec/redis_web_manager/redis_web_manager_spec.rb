@@ -3,6 +3,17 @@
 require 'spec_helper'
 
 RSpec.describe RedisWebManager do
+  # `redises`/`lifespan`/`authenticate` are module-level mattr_accessors shared
+  # by the whole process. `configure` assigns them *before* it validates, so a
+  # block that raises still leaves its (invalid) value behind — leaking into
+  # later examples and other spec files. Snapshot and restore around each
+  # example to keep the global config hermetic regardless of run order.
+  around do |example|
+    saved = [described_class.redises, described_class.lifespan, described_class.authenticate]
+    example.run
+    described_class.redises, described_class.lifespan, described_class.authenticate = *saved
+  end
+
   describe 'Test default configuration' do
     it 'returns a Redis class' do
       expect(described_class.redises).to be_a(Hash)
@@ -56,6 +67,10 @@ RSpec.describe RedisWebManager do
           c.lifespan = -1.days
         end
       end.to raise_error(ArgumentError, 'Invalid lifespan, value must be greater than 0')
+    end
+
+    it 'validates the current config when called without a block' do
+      expect { described_class.configure }.not_to raise_error
     end
 
     it 'returns instances' do
